@@ -54,9 +54,9 @@ Router.map(function() {
       }
     },
     onAfterAction: function() {
-      SEO.set({
-        title: 'Dashboard | ' + SEO.settings.title
-      });
+      // SEO.set({
+      //   title: 'Dashboard | ' + SEO.settings.title
+      // });
     }
   });
   this.route('projectView',{
@@ -70,6 +70,7 @@ Router.map(function() {
       Meteor.subscribe('calevents',this.params.id);
       Meteor.subscribe('uploads',this.params.id);
       Meteor.subscribe('directory');
+      Meteor.subscribe('chats');
 
       return Meteor.subscribe('projects');
     },

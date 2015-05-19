@@ -11,8 +11,20 @@ Template.chats.helpers({
     }
     return flitList.reverse();
   }
-});
 
+});
+Template.chat.helpers({
+  ownerName:function(){
+
+    var owner = Meteor.users.findOne({_id:this.owner});
+    if(owner && owner.profile){
+      return owner.profile.firstName + " " + owner.profile.lastName;
+    } else{
+      return 'unknown';
+    }
+
+  }
+});
 Template.chats.rendered = function(){
   scrollToBottom();
 };

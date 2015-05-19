@@ -4,8 +4,8 @@ Template.calendar.rendered = function(){
 
     dayClick:function(date,allDay,jsEvent,view){
       var ce = {};
-      ce.start = date;
-      ce.end = date;
+      ce.start = new Date(date);
+      ce.end = ce.start;
       ce.color = 'red';
       ce.className = 'todo';
       ce.project = Session.get('active_project');
@@ -30,6 +30,7 @@ Template.calendar.rendered = function(){
     },
     events:function(start,end,callback){
       var calEvents = Calevents.find({project:Session.get('active_project')},{reactive:false}).fetch();
+      console.log(calEvents);
       callback(calEvents);
     },
     eventRender:function(evt,ele){
@@ -57,8 +58,7 @@ Template.calendar.rendered = function(){
     selectable:true,
     selectHelper:true,
     editable:true,
-    weekMode:'liquid',
-    lang:'en'
+    weekMode:'liquid'
   }).data().fullCalendar;
   Deps.autorun(function(){
     Calevents.find({}).fetch();
